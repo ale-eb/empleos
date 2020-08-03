@@ -10,7 +10,6 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-
 public class Vacant {
 
   @Id

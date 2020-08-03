@@ -8,8 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
+import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @Transactional
 public class VacantServiceTests extends BaseTest {
@@ -33,12 +35,13 @@ public class VacantServiceTests extends BaseTest {
     assertThat(vacant.getDescription()).isEqualTo("Solicitamos ing civil para construir puente peatonal");
   }
 
-  /*
+
   @Test
-  void findById_withNotExistingId_throw() {
+  void findById_withNotExistingId_throwNoSuchElementException() {
     Long id = 1L;
 
-  }*/
+    assertThatThrownBy(() -> vacantService.findById(id)).isInstanceOf(NoSuchElementException.class);
+  }
 
   private void createAndInsertTestVacant() {
     Vacant vacant = new Vacant();
